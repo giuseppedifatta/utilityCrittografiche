@@ -5,36 +5,18 @@
 
 #include <iostream>
 #include <chrono>
-using std::cout;
-using std::cerr;
-using std::endl;
-
 #include <string>
-using std::string;
-
 #include <cstdlib>
-using std::exit;
-
 #include "cryptopp/cryptlib.h"
-
-
 #include "cryptopp/hex.h"
-
-
 #include "cryptopp/filters.h"
-
-
 #include "cryptopp/aes.h"
-
-
 #include "cryptopp/ccm.h"
 #include "cryptopp/rsa.h"
 
 
-
-#include "assert.h"
-
 using namespace CryptoPP;
+using namespace std;
 
 int main(int argc, char* argv[])
 {
@@ -110,7 +92,7 @@ int main(int argc, char* argv[])
 	//////////////////////////
 
 
-	//auto t0 = std::chrono::high_resolution_clock::now();
+	auto t0 = std::chrono::high_resolution_clock::now();
 
 	try
 	{
@@ -134,10 +116,10 @@ int main(int argc, char* argv[])
 		cerr << e.what() << endl;
 		exit(1);
 	}
-	//auto t1 = std::chrono::high_resolution_clock::now();
-	//auto dt = 1.e-9*std::chrono::duration_cast<std::chrono::nanoseconds>(t1-t0).count();
+	auto t1 = std::chrono::high_resolution_clock::now();
+	auto dt = 1.e-6*std::chrono::duration_cast<std::chrono::nanoseconds>(t1-t0).count();
 
-	//cout << "Time to encrypt privateKey: " << dt << " second(s)"  << endl;
+	cout << "Time to encrypt privateKey: " << dt << " millisecond(s)"  << endl;
 
 
 
@@ -157,7 +139,7 @@ int main(int argc, char* argv[])
 	/*********************************\
 	\*********************************/
 
-
+	auto t2 = std::chrono::high_resolution_clock::now();
 	try
 	{
 
@@ -181,7 +163,10 @@ int main(int argc, char* argv[])
 		cerr << e.what() << endl;
 		exit(1);
 	}
+	auto t3 = std::chrono::high_resolution_clock::now();
+	auto dt1 = 1.e-6*std::chrono::duration_cast<std::chrono::nanoseconds>(t3-t2).count();
 
+		cout << "Time to decrypt privateKey: " << dt1 << " millisecond(s)"  << endl;
 
 	/*********************************\
 	\*********************************/
