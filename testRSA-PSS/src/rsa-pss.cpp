@@ -180,7 +180,7 @@ int main(){
 	////////////////////////////////////////////////
 	try{
 		// Sign and Encode
-		RSASS<PSS, SHA256>::Signer signer(privateKey);
+		RSASS<PSS, SHA512>::Signer signer(privateKey);
 
 		AutoSeededRandomPool rng;
 
@@ -226,7 +226,7 @@ int main(){
 
 		////////////////////////////////////////////////
 		// Verify and Recover
-		RSASS<PSS, SHA256>::Verifier verifier(publicKey);
+		RSASS<PSS, SHA512>::Verifier verifier(publicKey);
 		cout << "Data to verify:" << data + signature << endl;
 		StringSource(data + signature, true,
 				new SignatureVerificationFilter(verifier, NULL,
